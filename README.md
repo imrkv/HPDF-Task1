@@ -22,7 +22,7 @@ The following request is used to display
 
 > `localhost:8080/getcookies` : Fetches the cookies you set
 
-> `localhost:8080/robot.txt`: Shows the forbidden request
+> `localhost:8080/robots.txt`: Shows the forbidden request
 
 > `localhost:8080/html` : Renders test html page
 
