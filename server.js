@@ -78,17 +78,16 @@ function displayList(authorList,articleList){
     <!DOCTYPE html>
     <html>
       <head>
-        <title> Author and Articles
-            
-        </title>
+        <title> Author and Articles List</title>
         <meta name="viewpart" content="width=device-width initial-scale=1" />
-     <link href="/ui/style.css" rel="stylesheet" />
+		<link href="/ui/style.css" rel="stylesheet" />
       </head>
       <body>
+		<h3 style='text-align:center'> Authors and their Published Articles</h3>
         <table>
             <tr>
-                <th> Author Name </th>
-                <th> Article Count </th>
+                <th> <b>Author Name</b> </th>
+                <th> <b>Article Count</b> </th>
             </tr>
             ${data}
         </table>   
@@ -126,12 +125,12 @@ app.get('/robots.txt', function (req, res) {
 
 //Request for render HTML page
 app.get('/html', function (req, res) {
-  res.sendFile(path.join(__dirname, 'others', 'test.html'));
+  res.sendFile(path.join(__dirname, 'ui', 'test.html'));
 });
 
 //Request to render image
 app.get('/image', function (req, res) {
-  res.sendFile(path.join(__dirname, 'others', 'image.jpg'));
+  res.sendFile(path.join(__dirname, 'ui', 'image.jpg'));
 });
 
 //Request to create input box and display on webpage(endpoint)
@@ -140,9 +139,8 @@ app.get('/input',function(req,res){
 });
 
 app.post('/submit', function (req, res) {
-    console.log(req.body.msg);
-    res.send("OK");
-    
+    console.log("Messege Sumbmitted: " +req.body.msg);
+    res.send("OK");    
 });
 
 
