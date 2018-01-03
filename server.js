@@ -38,21 +38,33 @@ app.get('/ui/:fileName', function (req, res) {
 app.get('/authors', function (req, res) {
     var authorList=[];
     var articleList=[];
-    request('https://jsonplaceholder.typicode.com/users', function (error, response, body) {
+	
+	var authorPromise = new Promise(function(resolve,reject){
+		request('https://jsonplaceholder.typicode.com/users', function (error, response, body) {
         if(error)
-            throw error;
-        else if(response.statusCode===200){
-            authorList=JSON.parse(body);
-            request('https://jsonplaceholder.typicode.com/posts', function (error, response, body) {
-                if(error)
-                    throw error;
-                else if(response.statusCode===200){
-                    articleList=JSON.parse(body);
-                    res.send(displayList(authorList,articleList));
-                }
-            });
-        }
-    });
+            reject(Error("Not Found"));
+		else
+			authorList=JSON.parse(body);
+			resolve("Fetched authorList");
+		});
+	});
+	
+	var articlePromise = new Promise(function(resolve,reject){
+		request('https://jsonplaceholder.typicode.com/posts', function (error, response, body) {
+        if(error)
+            reject(Error("Not Found"));
+		else
+			articleList=JSON.parse(body);
+			resolve("Fetched articleList");
+		});
+	});
+	
+	Promise.all([authorPromise,articlePromise]).then(function(Result) {
+		res.send(displayList(authorList,articleList));
+	}).catch(function(err){
+		throw err;
+	});
+	
 });
 
 function displayList(authorList,articleList){
