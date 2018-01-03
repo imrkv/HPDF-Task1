@@ -1,0 +1,28 @@
+body{
+    background: #0d1521;
+    font-family: tahoma;
+    color: #989898;
+}
+
+table{
+    position: relative;
+    width: 30%;
+    background: #090d13;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+td,th{
+	text-align:left
+}
+
+h1{
+   text-align:center;
+   font-size: 100px;
+}
+
+h2{
+   text-align:center;
+   font-size: 60px;
+}
